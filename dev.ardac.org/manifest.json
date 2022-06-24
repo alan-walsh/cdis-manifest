@@ -1,7 +1,7 @@
 {
   "notes": [
-    "This is the release manifest",
-    "That's all I have to say"
+    "ARDaC release manifest",
+    "Based on release 2022-05"
   ],
   "jenkins": {
     "autodeploy": "yes"
@@ -108,8 +108,8 @@
       "memory-limit": "256Mi",
       "image": "quay.io/cdis/gen3fuse-sidecar:2022.05",
       "env": {
-        "NAMESPACE": "<environment>",
-        "HOSTNAME": "<environment_fqdn>"
+        "NAMESPACE": "dev",
+        "HOSTNAME": "dev.ardac.org"
       },
       "args": [
 
@@ -218,16 +218,16 @@
     ]
   },
   "global": {
-    "environment": "<environment>",
-    "hostname": "<environment_fqdn>",
-    "revproxy_arn": "<aws_acm_cert_arn",
-    "dictionary_url": "<Gen3 Dictionary>",
+    "environment": "dev",
+    "hostname": "dev.ardac.org",
+    "revproxy_arn": "arn:aws:acm:us-east-1:233907574649:certificate/ea2a3f25-db2c-4549-aba0-61af2df0342b",
+    "dictionary_url": "https://s3.amazonaws.com/dictionary-artifacts/datadictionary/develop/schema.json",
     "portal_app": "gitops",
-    "kube_bucket": "kube-<environment>-gen3",
-    "logs_bucket": "logs-<environment>-gen3",
+    "kube_bucket": "kube-alan8-gen3",
+    "logs_bucket": "logs-alan8-gen3",
     "sync_from_dbgap": "False",
     "dispatcher_job_num": "5",
-    "useryaml_s3path": "<user yaml>",
+    "useryaml_s3path": "s3://cdis-state-ac233907574649-gen3/config/user.yaml",
     "netpolicy": "on",
     "tier_access_level": "regular",
     "tier_access_limit": "50",
@@ -244,15 +244,15 @@
   "guppy": {
     "indices": [
       {
-        "index": "<environment_prefix>_etl",
+        "index": "dev_etl",
         "type": "case"
       },
       {
-        "index": "<environment_prefix>_file",
+        "index": "dev_file",
         "type": "file"
       }
     ],
-    "config_index": "<environment_prefix>_array-config",
+    "config_index": "dev_array-config",
     "auth_filter_field": "auth_resource_path"
   },
   "scaling": {
