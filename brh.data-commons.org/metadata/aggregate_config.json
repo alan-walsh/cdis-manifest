@@ -24,6 +24,7 @@
       "mds_url": "https://data.midrc.org",
       "commons_url": "data.midrc.org",
       "guid_type": "discovery_metadata",
+      "study_data_field": "discovery_metadata",
       "columns_to_fields": {
         "_subjects_count": "cases_count",
         "study_description": "research_description",
@@ -108,7 +109,7 @@
   },
   "adapter_commons": {
     "Kids First": {
-      "mds_url": "https://gen3staging.kidsfirstdrc.org",
+      "mds_url": "https://gen3staging.kidsfirstdrc.org/",
       "commons_url": "kidsfirstdrc.org",
       "adapter": "gen3",
       "config": {
