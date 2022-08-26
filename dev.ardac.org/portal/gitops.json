@@ -1,37 +1,7 @@
 {
   "graphql": {
-    "boardCounts": [
-      {
-        "graphql": "_subject_count",
-        "name": "Subject",
-        "plural": "Subjects"
-      },
-      {
-        "graphql": "_study_count",
-        "name": "Study",
-        "plural": "Studies"
-      },
-      {
-        "graphql": "_sample_count",
-        "name": "Sample",
-        "plural": "Samples"
-      },
-      {
-        "graphql": "_imaging_file_count",
-        "name": "Imaging File",
-        "plural": "Imaging Files"
-      }
-    ],
-    "chartCounts": [
-      {
-        "graphql": "_subject_count",
-        "name": "Subject"
-      },
-      {
-        "graphql": "_imaging_file_count",
-        "name": "Imaging File"
-      }
-    ],
+    "boardCounts": [],
+    "chartCounts": [],
     "projectDetails": "boardCounts"
   },
   "components": {
@@ -66,69 +36,46 @@
             "label": "Query Data"
           },
           {
-            "name": "Discover Study Metadata",
-            "icon": "data-explore",
-            "body": "Discover study descriptions and other metadata stored in ARDaC",
-            "link": "/discovery",
-            "label": "Discover Study Metadata"
-          },
-            {
             "name": "Analyze Data",
             "icon": "data-analyze",
             "body": "Perform analysis on ARDaC data using Jupyter Notebooks.",
             "link": "/workspace",
             "label": "Run Analysis"
           }
-      ]
+      ],
+      "homepageChartNodes": []
     },
     "navigation": {
       "items": [
         {
-          "icon": "query",
-          "link": "/discovery",
-          "name": "Discovery",
-          "tooltip": "Use free-text search and tags to rapidly find relevant studies."
+          "icon": "exploration",
+          "link": "/explorer",
+          "name": "Exploration",
+          "tooltip": "Explore data"
         },
         {
           "icon": "dictionary",
           "link": "/DD",
-          "color": "#a2a2a2",
           "name": "Dictionary",
-          "tooltip": "The Data Dictionary serves to inform the data model and is updated as new data is ingested."
+          "tooltip": "View Dictionary"
         },
         {
-          "icon": "exploration",
-          "link": "/explorer",
-          "color": "#a2a2a2",
-          "name": "Exploration",
-          "tooltip": "The Exploration Page enables discovery of the data at the subject level and features a cohort builder."
-        },
-        {
-          "icon": "query",
-          "link": "/query",
-          "color": "#a2a2a2",
           "name": "Query",
-          "tooltip": "Query the databases using GraphiQL."
-        },
-        {
-          "name": "Notebook Browser",
-          "link": "/resource-browser",
-          "icon": "analysis",
-          "tooltip": "Learn how to use Jupyter Notebooks to explore and visualize data available by running a tutorial notebook, or use one of these examples as a launching point for your own custom analysis."
+          "link": "/query",
+          "icon": "query",
+          "tooltip": "Query the data using GraphQL"
         },
         {
           "icon": "workspace",
-          "link": "#hostname#workspace/",
-          "color": "#a2a2a2",
+          "link": "/workspace",
           "name": "Workspace",
-          "tooltip": "Gen3 workspaces are secure data analysis environments in the cloud that can access data from one or more data resources."
+          "tooltip": "Perform analysis using Jupyter Notebooks"
         },
         {
           "icon": "profile",
           "link": "/identity",
-          "color": "#a2a2a2",
           "name": "Profile",
-          "tooltip": "Create API keys for programmatic data access, and review your authorization privileges to datasets and services."
+          "tooltip": "View and edit your user profile"
         }
       ]
     },
@@ -143,7 +90,8 @@
           "link": "https://gen3.org/resources/user/",
           "name": "Documentation"
         }
-      ]
+      ],
+      "useProfileDropdown": false
     },
     "login": {
       "title": "ARDaC: AlcHepNet Research Data Commons",
@@ -163,139 +111,14 @@
         "href": "https://ctds.uchicago.edu/",
         "alt": "Center for Translational Data Science at the University of Chicago"
       }
-    ]
+    ],
+    "categorical9Colors": ["#c02f42", "#175676", "#59CD90", "#F2DC5D", "#40476D", "#FFA630", "#AE8799", "#1A535C", "#462255"],
+    "categorical2Colors": ["#6d6e70", "#c02f42"]
   },
-  "requiredCerts": [],
   "featureFlags": {
     "explorer": true,
-    "discovery": true,
-    "noIndex": true
-  },
-  "discoveryConfig": {
-    "features": {
-      "pageTitle": {
-        "enabled": false
-      },
-      "search": {
-        "searchBar": {
-          "enabled": true
-        }
-      },
-      "authorization": {
-        "enabled": false
-      }
-    },
-    "aggregations": [
-      {
-        "name": "Studies",
-        "field": "accession_number",
-        "type": "count"
-      }
-    ],
-    "tagSelector": {
-      "title": "Tags by category"
-    },
-    "studyColumns": [
-      {
-        "name": "Accession Number",
-        "field": "accession_number"
-      },
-      {
-        "name": "Study Title",
-        "field": "study_title"
-      },
-      {
-        "name": "Funding",
-        "field": "funding"
-      },
-      {
-        "name": "Source",
-        "field": "source"
-      },
-      {
-        "name": "Data Files",
-        "field": "data_files_count"
-      },
-      {
-        "name": "Subjects",
-        "field": "subjects_count"
-      }
-    ],
-    "studyPreviewField": {
-      "name": "Summary",
-      "field": "summary",
-      "contentType": "string",
-      "includeName": false,
-      "includeIfNotAvailable": true,
-      "valueIfNotAvailable": "No summary has been provided for this study."
-    },
-    "studyPageFields": {
-      "header": {
-        "field": "study_title"
-      },
-      "downloadLinks": {
-        "field": "data_download_links"
-      },
-      "fieldsToShow": [
-        {
-          "groupName": "ARDaC studies",
-          "includeName": false,
-          "fields": [
-            {
-              "name": "Accession Number",
-              "field": "accession_number"
-            },
-            {
-              "name": "Study Title",
-              "field": "study_title"
-            },
-            {
-              "name": "Funding",
-              "field": "funding"
-            },
-            {
-              "name": "Source",
-              "field": "source"
-            },
-            {
-              "name": "Data Files",
-              "field": "data_files_count"
-            },
-            {
-              "name": "Subjects",
-              "field": "subjects_count"
-            },
-            {
-              "name": "Link",
-              "field": "link"
-            }
-          ]
-        },
-        {
-          "fields": [
-            {
-              "name": "Summary",
-              "field": "summary",
-              "contentType": "paragraphs",
-              "includeName": true,
-              "includeIfNotAvailable": true,
-              "valueIfNotAvailable": "No summary has been provided for this study."
-            }
-          ]
-        }
-      ]
-    },
-    "minimalFieldMapping": {
-      "tagsListFieldName": "tags",
-      "uid": "accession_number"
-    },
-    "tagCategories": [
-      {
-        "name": "Data Type",
-        "color": "rgba(71, 130, 195, 1)",
-        "display": true
-      }
-    ]
+    "explorerPublic": true,
+    "analysis": true
   },
   "dataExplorerConfig": {
       "charts": {
@@ -311,23 +134,22 @@
           "chartType": "pie",
           "title": "Gender"
         },
+        "ethnicity": {
+          "chartType": "fullPie",
+          "title": "Ethnicity"
+        },
         "race": {
           "chartType": "bar",
           "title": "Race"
-        },
-        "ethnicity": {
-          "chartType": "bar",
-          "title": "Ethnicity"
         }
       },
       "filters": {
         "tabs": [
           {
-            "title": "Study",
+            "title": "Diagnosis",
             "fields": [
-              "project_id",
-              "cohort",
-              "clinical_site"
+              "diastolic_blood_pressure",
+              "systolic_blood_pressure"
             ]
           },
           {
@@ -336,7 +158,9 @@
               "project_id",
               "race",
               "ethnicity",
-              "gender"
+              "gender",
+              "bmi",
+              "age_at_index"
             ]
           }
         ]
@@ -345,12 +169,25 @@
         "enabled": true,
         "fields": [
           "project_id",
-          "submitter_id",
-          "cohort",
-          "clinical_site",
-          "gender",
           "race",
-          "ethnicity"
+          "ethnicity",
+          "gender",
+          "bmi",
+          "age_at_index",
+          "diastolic_blood_pressure",
+          "systolic_blood_pressure",
+          "url"
+        ],
+        "linkFields": [
+          "project_id",
+          "race",
+          "ethnicity",
+          "gender",
+          "bmi",
+          "age_at_index",
+          "diastolic_blood_pressure",
+          "systolic_blood_pressure",
+          "url"
         ]
       },
       "dropdowns": {
@@ -439,6 +276,7 @@
           "rightIcon": "download"
         }
       ],
+      "loginForDownload": true,
       "guppyConfig": {
         "dataType": "case",
         "nodeCountTitle": "Cases",
@@ -454,73 +292,104 @@
       "terraExportURL": "https://bvdp-saturn-dev.appspot.com/#import-data"
     },
     "fileExplorerConfig": {
-      "charts": {
-        "data_type": {
-          "chartType": "stackedBar",
-          "title": "File Type"
-        },
-        "data_format": {
-          "chartType": "stackedBar",
-          "title": "File Format"
-        }
+    "charts": {
+      "data_type": {
+        "chartType": "stackedBar",
+        "title": "File Type"
       },
-      "filters": {
-        "tabs": [
-          {
-            "title": "File",
-            "fields": [
-              "project_id",
-              "data_type",
-              "data_format",
-              "data_category"
-            ]
-          }
-        ]
-      },
-      "table": {
-        "enabled": true,
-        "fields": [
-          "project_id",
-          "file_name",
-          "file_size",
-          "object_id"
-        ]
-      },
-      "guppyConfig": {
-        "dataType": "file",
-        "fieldMapping": [
-          {
-            "field": "object_id",
-            "name": "GUID"
-          }
-        ],
-        "nodeCountTitle": "Files",
-        "manifestMapping": {
-          "resourceIndexType": "case",
-          "resourceIdField": "case_id",
-          "referenceIdFieldInResourceIndex": "object_id",
-          "referenceIdFieldInDataIndex": "object_id"
-        },
-        "accessibleFieldCheckList": [
-          "project_id"
-        ],
-        "accessibleValidationField": "project_id",
-        "downloadAccessor": "object_id"
-      },
-      "buttons": [
+      "data_format": {
+        "chartType": "stackedBar",
+        "title": "File Format"
+      }
+    },
+    "filters": {
+      "tabs": [
         {
-          "enabled": true,
-          "type": "file-manifest",
-          "title": "Download Manifest",
-          "leftIcon": "datafile",
-          "rightIcon": "download",
-          "fileName": "file-manifest.json"
+          "title": "File",
+          "fields": [
+            "project_id",
+            "data_type",
+            "data_format"
+          ]
         }
+      ]
+    },
+    "table": {
+      "enabled": true,
+      "fields": [
+        "project_id",
+        "file_name",
+        "file_size",
+        "object_id"
+      ]
+    },
+    "guppyConfig": {
+      "dataType": "file",
+      "fieldMapping": [
+        { "field": "object_id", "name": "GUID" }
       ],
-      "dropdowns": {}
+      "nodeCountTitle": "Files",
+      "manifestMapping": {
+        "resourceIndexType": "case",
+        "resourceIdField": "case_id",
+        "referenceIdFieldInResourceIndex": "object_id",
+        "referenceIdFieldInDataIndex": "object_id"
+      },
+      "accessibleFieldCheckList": ["project_id"],
+      "accessibleValidationField": "project_id",
+      "downloadAccessor": "object_id"
+    },
+    "buttons": [
+      {
+        "enabled": true,
+        "type": "file-manifest",
+        "title": "Download Manifest",
+        "leftIcon": "datafile",
+        "rightIcon": "download",
+        "fileName": "file-manifest.json"
+      },
+      {
+        "enabled": true,
+        "type": "export-files-to-workspace",
+        "title": "Export to Workspace",
+        "leftIcon": "datafile",
+        "rightIcon": "download"
+      }
+    ],
+    "dropdowns": {}
   },
   "resourceBrowser": {},
+  "workspacePageTitle": "",
+  "workspacePageDescription": "",
+  "studyViewerConfig": [],
   "useArboristUI": false,
+  "hideSubmissionIfIneligible": true,
   "showArboristAuthzOnProfile": false,
-  "showFenceAuthzOnProfile": true
+  "showFenceAuthzOnProfile": true,
+  "showExternalLoginsOnProfile": false,
+  "componentToResourceMapping": {
+    "Workspace": {
+      "resource": "/workspace",
+      "method": "access",
+      "service": "jupyterhub"
+    },
+    "Analyze Data": {
+      "resource": "/workspace",
+      "method": "access",
+      "service": "jupyterhub"
+    },
+    "Query": {
+      "resource": "/query_page",
+      "method": "access",
+      "service": "query_page"
+    },
+    "Query Data": {
+      "resource": "/query_page",
+      "method": "access",
+      "service": "query_page"
+    }
+  },
+  "connectSrcCSPWhitelist": [
+    "https://dev.ardac.org"
+  ]
 }
