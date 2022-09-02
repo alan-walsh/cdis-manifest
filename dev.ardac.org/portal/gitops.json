@@ -1,39 +1,4 @@
 {
-  "graphql": {
-    "boardCounts": [
-      {
-        "graphql": "_subject_count",
-        "name": "Subject",
-        "plural": "Subjects"
-      },
-      {
-        "graphql": "_study_count",
-        "name": "Study",
-        "plural": "Studies"
-      },
-      {
-        "graphql": "_sample_count",
-        "name": "Sample",
-        "plural": "Samples"
-      },
-      {
-        "graphql": "_imaging_file_count",
-        "name": "Imaging File",
-        "plural": "Imaging Files"
-      }
-    ],
-    "chartCounts": [
-      {
-        "graphql": "_subject_count",
-        "name": "Subject"
-      },
-      {
-        "graphql": "_imaging_file_count",
-        "name": "Imaging File"
-      }
-    ],
-    "projectDetails": "boardCounts"
-  },
   "components": {
     "appName": "ARDaC: AlcHepNet Research Data Commons",
     "index": {
