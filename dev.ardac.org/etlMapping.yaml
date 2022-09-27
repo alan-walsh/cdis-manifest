@@ -1,86 +1,71 @@
 mappings:
-  - name: etl
+  - name: ardac_case_09_14
     doc_type: case
     type: aggregator
     root: case
     props:
-      - name: submitter_id
-      - name: project_id
-      - name: disease_type
-      - name: primary_site
+    - name: submitter_id
+    - name: project_id
+    - name: cohort
+    - name: study_site
+    - name: actarm
+    parent_props:
+    - name: study_name
+      path: studies[study_name]
     flatten_props:
-      - path: demographics
-        props:
-          - name: gender
-            value_mappings:
-              - female: F
-              - male: M
-          - name: race
-            value_mappings:
-              - american indian or alaskan native: Indian
-          - name: ethnicity
-          - name: year_of_birth
+    - path: demographics
+      props:
+      - name: gender
+        value_mappings:
+        - female: Female
+        - male: Male
+      - name: race
+        value_mappings:
+        - american indian or alaskan native: Native
+      - name: ethnicity
+      - name: year_of_birth
+      - name: age_at_index
+    - path: audits
+      props:
+      - name: drinks_per_day
+        src: usaudit_q2
     aggregated_props:
-      - name: _samples_count
-        path: samples
-        fn: count
-      - name: _aliquots_count
-        path: samples.aliquots
-        fn: count
-      - name: _submitted_methylations_count
-        path: samples.aliquots.submitted_methylation_files
-        fn: count
-      - name: _submitted_copy_number_files_on_aliquots_count
-        path: samples.aliquots.submitted_copy_number_files
-        fn: count
-      - name: _read_groups_count
-        path: samples.aliquots.read_groups
-        fn: count
-      - name: _submitted_aligned_reads_count
-        path: samples.aliquots.read_groups.submitted_aligned_reads_files
-        fn: count
-      - name: _submitted_unaligned_reads_count
-        path: samples.aliquots.read_groups.submitted_unaligned_reads_files
-        fn: count
-      - name: _submitted_copy_number_files_on_read_groups_count
-        path: samples.aliquots.read_groups.submitted_copy_number_files
-        fn: count
-      - name: _submitted_somatic_mutations_count
-        path: samples.aliquots.read_groups.submitted_somatic_mutations
-        fn: count
-    joining_props:
-      - index: file
-        join_on: _case_id
-        props:
-          - name: data_format
-            src: data_format
-            fn: set
-          - name: data_type
-            src: data_type
-            fn: set
-          - name: _file_id
-            src: file_id
-            fn: set
-  - name: file
-    doc_type: file
-    type: collector
-    root: None
-    category: data_file
+    - name: visit_day
+      path: follow_ups
+      src: visit_day
+      fn: max
+    - name: visit_day_set
+      path: follow_ups
+      src: visit_day
+      fn: set
+      # - name: alcohol_intensity
+      #   path: follow_ups.exposures
+      #   fn: set
+    - name: eGFR
+      path: follow_ups.molecular_tests
+      src: test_value
+      fn: max
+
+  - name: ardac_follow_up_09_14
+    doc_type: follow_up
+    type: aggregator
+    root: follow_up
     props:
-      - name: object_id
-      - name: md5sum
-      - name: file_name
-      - name: file_size
-      - name: data_format
-      - name: data_type
-      - name: state
-    injecting_props:
-      case:
-        props:
-          - name: _case_id
-            src: id
-            fn: set
-          - name: project_id
-    target_nodes:
-      - name: slide_image
-        path: slides.samples.cases
+    - name: project_id
+    - name: follow_up_id
+      src: submitter_id
+    - name: height
+    - name: visit_day
+    - name: cases_submitter_id
+      src: cases.submitter_id
+      fn: set
+    parent_props:
+    - name: pat_id
+      path: cases[submitter_id]
+    - name: case_arm
+      path: cases[actarm]
+    aggregated_props:
+    - name: eGFR
+      path: molecular_tests
+      src: test_value
+      fn: max
