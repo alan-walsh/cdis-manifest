@@ -95,28 +95,30 @@
     "analysis": false,
     "discovery": true,
     "discoveryUseAggMDS": true,
-    "studyRegistration": true
+    "studyRegistration": true,
+    "workspaceRegistration": true
   },
   "discoveryConfig": {
     "features": {
       "advSearchFilters": {
-        "enabled": false,
+        "enabled": true,
         "field": "advSearchFilters",
+        "displayName": "Filters",
         "filters": [
           {
-            "key": "Research Focus Area"
+            "key": "Study Type"
           },
           {
-            "key": "Administering IC(s)"
+            "key": "Data Type"
           },
           {
-            "key": "Simulated vs. Real Data"
+            "key": "Subject Type"
           },
           {
-            "key": "Year Grant Awarded"
+            "key": "Gender"
           },
           {
-            "key": "Study Description"
+            "key": "Age"
           }
         ]
       },
@@ -155,6 +157,7 @@
             "project_title",
             "project_number",
             "appl_id",
+            "_hdp_uid",
             "dataset_1_title",
             "dataset_2_title",
             "dataset_3_title",
@@ -172,7 +175,7 @@
         },
         "tagSearchDropdown": {
           "enabled": true,
-          "collapsibleButtonText": "Study Filters"
+          "collapsibleButtonText": "Data Repository"
         }
       },
       "authorization": {
@@ -201,7 +204,7 @@
     "aggregations": [
       {
         "name": "Studies",
-        "field": "project_number",
+        "field": "_hdp_uid",
         "type": "count"
       }
     ],
@@ -642,60 +645,66 @@
       "authzField": "authz",
       "tagsListFieldName": "tags",
       "dataAvailabilityField": "data_availability",
-      "uid": "project_number"
+      "uid": "_hdp_uid"
     },
     "tagCategories": [
       {
         "name": "Study Setting",
         "displayName": "Study Setting",
         "color": "#532565",
-        "display": true
+        "display": false
       },
       {
         "name": "Subject Characteristics",
         "displayName": "Subject Characteristics",
         "color": "#982568",
-        "display": true
+        "display": false
       },
       {
         "name": "Study Design",
         "displayName": "Study Design",
         "color": "#981f32",
-        "display": true
+        "display": false
       },
       {
         "name": "Intervention/Treatment",
         "displayName": "Intervention/Treatment",
         "color": "#bf362e",
-        "display": true
+        "display": false
       },
       {
         "name": "Pain",
         "color": "#e07c3e",
-        "display": true
+        "display": false
       },
       {
         "name": "Substance Use",
         "displayName": "Substance Use",
         "color": "#532565",
-        "display": true
+        "display": false
       },
       {
         "name": "Data Type",
         "displayName": "Data Type",
         "color": "#982568",
-        "display": true
+        "display": false
       },
       {
         "name": "Commons",
         "displayName": "Data Resources",
         "color": "#981f32",
-        "display": true
+        "display": false
       },
       {
         "name": "Other",
         "color": "#bf362e",
         "display": false
+      },
+      {
+        "name": "Data Repository",
+        "displayName": "Data Repository",
+        "color": "#bf362e",
+        "display": true
       }
     ]
   },
@@ -761,17 +770,68 @@
   "componentToResourceMapping": {},
   "stridesPortalURL": "https://healportal.org",
   "registrationConfigs": {
-    "features":{
+    "features": {
       "studyRegistrationConfig": {
         "studyRegistrationTrackingField": "registrant_username",
         "studyRegistrationValidationField": "is_registered",
         "studyRegistrationAccessCheckField": "registration_authz",
         "studyRegistrationFormDisclaimerField": "Information provided on this page will be used for correspondence regarding your request and may be shared with the NIH and/or the HEAL Data Stewards",
-        "clinicalTrialFields": ["NCTId", "OfficialTitle", "BriefTitle", "Acronym", "StudyType", "OverallStatus", "StartDate", "StartDateType", "CompletionDate", "CompletionDateType", "IsFDARegulatedDrug", "IsFDARegulatedDevice", "IsPPSD", "BriefSummary", "DetailedDescription", "Condition", "DesignAllocation", "DesignPrimaryPurpose", "Phase", "DesignInterventionModel", "EnrollmentCount", "EnrollmentType", "DesignObservationalModel", "InterventionType", "PrimaryOutcomeMeasure", "SecondaryOutcomeMeasure", "OtherOutcomeMeasure", "Gender", "GenderBased", "MaximumAge", "MinimumAge", "IPDSharing", "IPDSharingTimeFrame", "IPDSharingAccessCriteria", "IPDSharingURL", "SeeAlsoLinkURL", "AvailIPDURL", "AvailIPDId", "AvailIPDComment"]
+        "clinicalTrialFields": [
+          "NCTId",
+          "OfficialTitle",
+          "BriefTitle",
+          "Acronym",
+          "StudyType",
+          "OverallStatus",
+          "StartDate",
+          "StartDateType",
+          "CompletionDate",
+          "CompletionDateType",
+          "IsFDARegulatedDrug",
+          "IsFDARegulatedDevice",
+          "IsPPSD",
+          "BriefSummary",
+          "DetailedDescription",
+          "Condition",
+          "DesignAllocation",
+          "DesignPrimaryPurpose",
+          "Phase",
+          "DesignInterventionModel",
+          "EnrollmentCount",
+          "EnrollmentType",
+          "DesignObservationalModel",
+          "InterventionType",
+          "PrimaryOutcomeMeasure",
+          "SecondaryOutcomeMeasure",
+          "OtherOutcomeMeasure",
+          "Gender",
+          "GenderBased",
+          "MaximumAge",
+          "MinimumAge",
+          "IPDSharing",
+          "IPDSharingTimeFrame",
+          "IPDSharingAccessCriteria",
+          "IPDSharingURL",
+          "SeeAlsoLinkURL",
+          "AvailIPDURL",
+          "AvailIPDId",
+          "AvailIPDComment"
+        ],
+        "dataDictionarySubmissionBucket": "",
+        "dataDictionarySubmissionDisclaimerField": "All submitted data dictionaries will be available to public.",
+        "dataDictionaryField": "data_dictionaries"
+      },
+      "workspaceRegistrationConfig" : {
+        "workspacePolicyId": "workspace_strides_integrated",
+        "workspaceInfoMessage": "The HEAL workspace provides a standardized computational environment for accessing and analyzing data from HEAL studies. Please fill out this form to request access to the workspace and start computing!",
+        "successRedirect" : {
+          "link": "/discovery",
+          "text": "Go to Discovery Page"
+        }
       }
     },
-    "kayakoConfig":{
-      "kayakoDepartmentId": 21        
+    "kayakoConfig": {
+      "kayakoDepartmentId": 21
     }
   }
 }

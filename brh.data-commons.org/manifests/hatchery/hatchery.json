@@ -2,6 +2,10 @@
   "user-namespace": "jupyter-pods",
   "sub-dir": "/lw-workspace",
   "user-volume-size": "10Gi",
+  "prisma": {
+    "enable": true,
+    "console-address": "https://us-west1.cloud.twistlock.com/gov-3229443"
+  },
   "default-pay-model": {
     "account_id": "354484406138",
     "workspace_type": "brhworkspaces",
@@ -11,7 +15,7 @@
   "sidecar": {
     "cpu-limit": "1.0",
     "memory-limit": "256Mi",
-    "image": "quay.io/cdis/ecs-ws-sidecar:feat_datamounting",
+    "image": "quay.io/cdis/ecs-ws-sidecar:2023.02",
     "env": {
       "NAMESPACE": "default",
       "HOSTNAME": "brh.data-commons.org"
@@ -33,8 +37,8 @@
   "containers": [
     {
       "target-port": 8888,
-      "cpu-limit": "1.0",
-      "memory-limit": "2Gi",
+      "cpu-limit": "2.0",
+      "memory-limit": "8Gi",
       "name": "(Generic) Jupyter Lab Notebook with R Kernel",
       "image": "quay.io/cdis/jupyter-superslim-r:markdown_preview",
       "env": {
@@ -68,16 +72,15 @@
     },
     {
       "target-port": 8888,
-      "cpu-limit": "1.0",
-      "memory-limit": "4Gi",
-      "name": "(Tutorials) Example Analysis Jupyter Lab Notebooks",
-      "image": "quay.io/cdis/brh-notebooks:combined_demos__024592222a5945319d9f321c1fcb7fc42b917a01",
+      "cpu-limit": "2.0",
+      "memory-limit": "8Gi",
+      "name": "(Tutorials) Example Analysis Jupyter Notebooks",
+      "image": "quay.io/cdis/brh-notebooks:combined_demos__887221800628b5fa3fbc501e39499ae7a66c219f",
       "env": {
         "FRAME_ANCESTORS": "https://brh.data-commons.org"
       },
       "args": [
         "--NotebookApp.base_url=/lw-workspace/proxy/",
-        "--NotebookApp.default_url=/lab",
         "--NotebookApp.password=''",
         "--NotebookApp.token=''",
         "--NotebookApp.shutdown_no_activity_timeout=5400",

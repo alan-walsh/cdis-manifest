@@ -31,18 +31,18 @@
     "projectDetails": "boardCounts"
   },
   "components": {
-    "appName": "NHLBI BioData Catalyst",
+    "appName": "NHLBI BioData Catalyst®",
     "index": {
       "introduction": {
         "heading": "",
-        "text": "NHLBI BioData Catalyst supports the management, analysis and sharing of human disease data for the research community and aims to advance basic understanding of the genetic basis of complex traits and accelerate discovery and development of therapies, diagnostic tests, and other technologies for diseases like cancer. The data commons supports cross-project analyses by harmonizing data from different projects through the collaborative development of a data dictionary, providing an API for data queries and download, and providing a cloud-based analysis workspace with rich tools and resources.",
+        "text": "NHLBI BioData Catalyst&reg; (BDC) supports the management, analysis and sharing of human disease data for the research community and aims to advance basic understanding of the genetic basis of complex traits and accelerate discovery and development of therapies, diagnostic tests, and other technologies for diseases like cancer. The data commons supports cross-project analyses by harmonizing data from different projects through the collaborative development of a data dictionary, providing an API for data queries and download, and providing a cloud-based analysis workspace with rich tools and resources.",
         "link": "/submission"
       },
       "buttons": [
         {
           "name": "Define Data Field",
           "icon": "stage-planning",
-          "body": "NHLBI BioData Catalyst define the data in a general way. Please study the dictionary before you start browsing.",
+          "body": "BDC define the data in a general way. Please study the dictionary before you start browsing.",
           "link": "/DD",
           "label": "Learn more"
         },
@@ -61,6 +61,7 @@
           "label": "Run analysis"
         }
       ],
+      "homepageChartNodesExcludeFiles": true,
       "homepageChartNodes": [
         {
           "node": "subject",
@@ -120,7 +121,7 @@
       ]
     },
     "login": {
-      "title": "NHLBI BioData Catalyst",
+      "title": "NHLBI BioData Catalyst®",
       "subTitle": "Explore, Analyze, and Share Data",
       "text": "This website supports the management, analysis and sharing of human disease data for the research community and aims to advance basic understanding of the genetic basis of complex traits and accelerate discovery and development of therapies, diagnostic tests, and other technologies for diseases like cancer.",
       "contact": "If you have any questions about access or the registration process, please contact ",
@@ -157,7 +158,7 @@
           "text": "Data Sharing Policy"
         },
         {
-          "text": "HHS Responsible Disclosure Form",
+          "text": "HHS Vulnerability Disclosure",
           "href": "https://www.hhs.gov/vulnerability-disclosure-policy/index.html"
         },
         {
@@ -165,7 +166,7 @@
           "href": "https://www.nhlbi.nih.gov/about/foia-fee-for-service-office"
         },
         {
-          "text": "Accessibility Information",
+          "text": "Accessibility",
           "href": "https://biodatacatalyst.nhlbi.nih.gov/accessibility"
         },
         {
@@ -643,13 +644,33 @@
         "enabled": false,
         "text": "Study Discovery"
       },
+      "tagsColumn": {
+        "enabled": false
+      },
+      "tagsInDescription": {
+        "enabled": true
+      },
       "search": {
         "searchBar": {
           "enabled": true
+        },
+        "tagSearchDropdown": {
+          "enabled": true,
+          "collapsibleButtonText": "Study Filters"
         }
       },
       "authorization": {
-        "enabled": true
+        "enabled": true,
+        "supportedValues": {
+          "accessible": {
+            "enabled": true,
+            "menuText": "Accessible"
+          },
+          "unaccessible": {
+            "enabled": true,
+            "menuText": "Not Accessible"
+          }
+        }
       }
     },
     "aggregations": [
@@ -665,7 +686,8 @@
       }
     ],
     "tagSelector": {
-      "title": "Tags by category"
+      "title": "Tags by category",
+      "showTagCategoryNames": true
     },
     "studyColumns": [
       {
@@ -675,6 +697,8 @@
       {
         "name": "Full Name",
         "field": "full_name",
+        "errorIfNotAvailable": false,
+        "valueIfNotAvailable": "",
         "contentType": "string"
       },
       {
@@ -687,6 +711,12 @@
       {
         "name": "dbGaP Accession Number",
         "field": "study_id"
+      },
+      {
+        "name": "Released",
+        "field": "released",
+        "errorIfNotAvailable": false,
+        "valueIfNotAvailable": "n/a"
       }
     ],
     "studyPreviewField": {
@@ -749,6 +779,91 @@
               "includeName": false,
               "includeIfNotAvailable": true,
               "valueIfNotAvailable": "No description has been provided for this study."
+            }
+          ]
+        }
+      ]
+    },
+    "detailView": {
+      "headerField": "project_id",
+      "tabs": [
+        {
+          "tabName": "Study",
+          "groups": [
+            {
+              "header": "Study Information",
+              "fields": [
+                {
+                  "type": "text",
+                  "label": "Full Name:",
+                  "sourceField": "full_name",
+                  "default": "Not specified"
+                },
+                {
+                  "type": "text",
+                  "label": "Short Name:",
+                  "sourceField": "short_name",
+                  "default": "Not specified"
+                },
+                {
+                  "type": "text",
+                  "label": "Number Of Subjects:",
+                  "sourceField": "_subjects_count",
+                  "default": "Not specified"
+                },
+                {
+                  "type": "text",
+                  "label": "dbGaP Accession Number:",
+                  "sourceField": "dbgap_accession",
+                  "default": "Not specified"
+                },
+                {
+                  "type": "link",
+                  "label": "dbGaP URL:",
+                  "sourceField": "dbgap_url",
+                  "default": "Not specified"
+                },
+                {
+                  "type": "text",
+                  "label": "Released:",
+                  "sourceField": "released",
+                  "default": "Not specified"
+                },
+                {
+                  "type": "tags"
+                }
+              ]
+            },
+            {
+              "header": "Study Description",
+              "fields": [
+                {
+                  "type": "block",
+                  "sourceField": "study_description"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tabName": "Access",
+          "groups": [
+            {
+              "fields": [
+                {
+                  "type": "accessDescriptor"
+                }
+              ]
+            },
+            {
+              "header": "Study Access",
+              "fields": [
+                {
+                  "type": "text",
+                  "sourceField": "study_data_requires_access_request",
+                  "label": "Study Data Requires Access Request"
+                }
+              ]
             }
           ]
         }
