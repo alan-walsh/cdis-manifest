@@ -251,16 +251,20 @@
           "name": "Get Started"
         },
         {
+          "link": "https://www.midrc.org/midrc-acknowledgements",
+          "name": "Cite MIDRC"
+        },
+        {
           "link": "https://staging.midrc.org/dashboard/Public/documentation/DUA.html",
-          "name": "Data Use Agreement"
+          "name": "DUA"
+        },
+        {
+          "link": "https://www.midrc.org/resources",
+          "name": "Resources"
         },
         {
           "link": "https://gen3.org/resources/user/",
           "name": "Gen3"
-        },
-        {
-          "link": "https://www.hhs.gov/vulnerability-disclosure-policy/index.html",
-          "name": "HHS Responsible Disclosure"
         },
         {
           "icon": "upload",
@@ -293,6 +297,14 @@
       "#035C94",
       "#462255"
     ],
+    "footer": {
+      "links": [
+        {
+          "text": "HHS Responsible Disclosure",
+          "href": "https://www.hhs.gov/vulnerability-disclosure-policy/index.html"
+        }
+      ]
+    },
     "footerLogos": [
       {
         "src": "/src/img/gen3.png",
@@ -339,8 +351,49 @@
               "covid19_positive",
               "project_id"
             ]
-          }
-        ]
+          },
+          {
+            "title": "COVID Tests",
+            "fields": [
+              "measurements.test_name",
+              "measurements.test_result_text",
+              "measurements.test_method",
+              "measurements.test_days_from_index"
+            ]
+          },
+          {
+            "title": "Medications",
+            "fields": [
+              "medications.days_to_medication_start",
+              "medications.days_to_medication_end",
+              "medications.dose_sequence_number",
+              "medications.medication_code",
+              "medications.medication_code_system",
+              "medications.medication_manufacturer",
+              "medications.medication_name",
+              "medications.medication_status",
+              "medications.medication_type"
+            ]
+          },
+          {
+            "title": "Procedures",
+            "fields": [
+              "procedures.breathing_support_type",
+              "procedures.days_to_procedure_start",
+              "procedures.days_to_procedure_end",
+              "procedures.procedure_name"
+            ]
+          },
+          {
+            "title": "Conditions",
+            "fields": [
+              "conditions.condition_name",
+              "conditions.condition_code_system",
+              "conditions.condition_code",
+              "conditions.days_to_condition_start",
+              "conditions.days_to_condition_end"
+            ]
+          }        ]
       },
       "table": {
         "enabled": true,
@@ -353,6 +406,28 @@
           "ethnicity",
           "zip",
           "covid19_positive",
+          "measurements.test_name",
+          "measurements.test_result_text",
+          "measurements.test_method",
+          "measurements.test_days_from_index",
+          "medications.days_to_medication_start",
+          "medications.days_to_medication_end",
+          "medications.dose_sequence_number",
+          "medications.medication_code",
+          "medications.medication_code_system",
+          "medications.medication_manufacturer",
+          "medications.medication_name",
+          "medications.medication_status",
+          "medications.medication_type",
+          "procedures.breathing_support_type",
+          "procedures.days_to_procedure_start",
+          "procedures.days_to_procedure_end",
+          "procedures.procedure_name",
+          "conditions.condition_name",
+          "conditions.condition_code_system",
+          "conditions.condition_code",
+          "conditions.days_to_condition_start",
+          "conditions.days_to_condition_end",
           "_imaging_studies_count",
           "_ct_series_file_count",
           "_dx_series_file_count",
@@ -807,22 +882,34 @@
             "title": "Series Properties",
             "fields": [
               "acquisition_type",
+              "angio_flag",
               "contrast_bolus_agent",
               "convolution_kernel",
               "detector_type",
+              "diffusion_b_value",
+              "diffusion_gradient_orientation",
+              "echo_number",
+              "echo_time",
+              "echo_train_length",
               "exposure_modulation_type",
               "image_type",
+              "imaged_nucleus",
               "imager_pixel_spacing",
               "lossy_image_compression",
               "manufacturer",
               "manufacturer_model_name",
               "modality",
               "multiframe_images",
+              "number_of_temporal_positions",
               "patient_position",
               "pixel_spacing",
               "radiopharmaceutical",
+              "repetition_time",
+              "scan_options",
+              "sequence_variant",
               "series_description",
               "slice_thickness",
+              "software_version",
               "spacing_between_slices",
               "spatial_resolution",
               "transducer_type",
@@ -848,50 +935,62 @@
       "table": {
         "enabled": true,
         "fields": [
-          "acquisition_type",
-          "contrast_bolus_agent",
-          "convolution_kernel",
-          "detector_type",
-          "exposure_modulation_type",
-          "image_type",
-          "imager_pixel_spacing",
-          "lossy_image_compression",
-          "manufacturer",
-          "manufacturer_model_name",
-          "modality",
-          "multiframe_images",
-          "patient_position",
-          "pixel_spacing",
-          "radiopharmaceutical",
-          "series_description",
-          "slice_thickness",
-          "spacing_between_slices",
-          "spatial_resolution",
-          "transducer_type",
-          "view_position",
-          "study_description",
-          "age_at_imaging",
-          "days_to_study",
-          "study_year",
-          "study_year_shifted",
-          "days_from_study_to_pos_covid_test",
-          "days_from_study_to_neg_covid_test",
-          "data_format",
-          "covid19_positive",
-          "age_at_index",
-          "index_event",
-          "sex",
-          "race",
-          "zip",
-          "data_format",
-          "data_category",
-          "data_type",
-          "series_uid",
-          "study_uid",
-          "case_ids",
-          "object_id",
-          "submitter_id",
-          "project_id"
+            "acquisition_type",
+            "angio_flag",
+            "contrast_bolus_agent",
+            "convolution_kernel",
+            "detector_type",
+            "diffusion_b_value",
+            "diffusion_gradient_orientation",
+            "echo_number",
+            "echo_time",
+            "echo_train_length",
+            "exposure_modulation_type",
+            "image_type",
+            "imaged_nucleus",
+            "imager_pixel_spacing",
+            "lossy_image_compression",
+            "manufacturer",
+            "manufacturer_model_name",
+            "modality",
+            "multiframe_images",
+            "number_of_temporal_positions",
+            "patient_position",
+            "pixel_spacing",
+            "radiopharmaceutical",
+            "repetition_time",
+            "scan_options",
+            "sequence_variant",
+            "series_description",
+            "slice_thickness",
+            "software_version",
+            "spacing_between_slices",
+            "spatial_resolution",
+            "transducer_type",
+            "view_position",
+            "study_description",
+            "age_at_imaging",
+            "days_to_study",
+            "study_year",
+            "study_year_shifted",
+            "days_from_study_to_pos_covid_test",
+            "days_from_study_to_neg_covid_test",
+            "data_format",
+            "covid19_positive",
+            "age_at_index",
+            "index_event",
+            "sex",
+            "race",
+            "zip",
+            "data_format",
+            "data_category",
+            "data_type",
+            "series_uid",
+            "study_uid",
+            "case_ids",
+            "object_id",
+            "submitter_id",
+            "project_id"
         ],
         "dicomViewerId": "submitter_id",
         "linkFields": [
@@ -1027,17 +1126,20 @@
     {
       "name": "Description",
       "field": "data_description",
-      "contentType": "string"
+      "contentType": "string",
+      "width": 400
     },
     {
       "name": "Publication URL",
       "field": "data_url",
-      "contentType": "link"
+      "contentType": "link",
+      "width": 300
     },
     {
       "name": "Disease Type",
       "field": "disease_type",
-      "contentType": "string"
+      "contentType": "string",
+      "width": 150
     }
   ],
     "studyPreviewField": {
@@ -1056,7 +1158,7 @@
       },
       "fieldsToShow": [{
           "groupName": "Dataset Identifiers",
-          "includeName": true,
+          "includeName": false,
           "fields": [{
               "name": "Citation",
               "field": "data_citation",
@@ -1104,7 +1206,7 @@
             "name": "Research Description",
             "field": "research_description",
             "contentType": "paragraphs",
-            "includeName": false,
+            "includeName": true,
             "includeIfNotAvailable": false
           }]
         }
@@ -1117,13 +1219,13 @@
     },
     "tagCategories": [
     {
-        "name": "Disease Type",
+        "name": "disease_type",
         "displayName": "Disease Type",
         "color": "#532565",
         "display": true
       },
     {
-        "name": "Primary Site",
+        "name": "primary_site",
         "displayName": "Primary Site",
         "color": "#981f32",
         "display": true
